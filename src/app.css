@@ -1,0 +1,30 @@
+.videoContainer {
+    position: relative;
+    background-color: black;
+    width: max-content;
+}
+  
+.videoControlsOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.progressBar {
+    background: rgb(95, 95, 95);
+    width: 80%;
+    height: 10px;
+    cursor: pointer;
+}
+
+.linefill {
+    background: white;
+    height: 100%;
+}

@@ -1,0 +1,75 @@
+interface SchemaInfo {
+    name: string;
+    type: string;
+    level?: string;
+    mandatory?: string;
+    multiple?: string;
+    minver?: string;
+    webm?: string;
+    default?: string;
+    description?: string;
+    range?: string;
+    br?: string[];
+    bytesize?: string;
+    divx?: string;
+    strong?: string;
+    recursive?: string;
+    i?: string;
+    maxver?: string;
+    del?: string[];
+    cppname?: string;
+  }
+  
+  interface Schema {
+    [key: string]: SchemaInfo;
+  }
+  
+  interface TagObject {
+    tag: number;
+    tagStr: string;
+    type: string;
+    name: string;
+    start: number;
+    end: number;
+    dataSize?: number;
+    data?: Uint8Array;
+    value?: number | string | boolean;
+    track?: number;
+    keyframe?: boolean;
+    discardable?: boolean;
+    payload?: Uint8Array;
+  }
+  
+  interface EbmlDecoderOptions {
+    debug?: boolean;
+  }
+  
+  type EbmlDecoderCallback = (event: ['start' | 'tag' | 'end', TagObject]) => void;
+  
+  declare class EbmlDecoder {
+    constructor(options?: EbmlDecoderOptions);
+    
+    /**
+     * Reset decoder state
+     */
+    reset(): void;
+    
+    /**
+     * Process a chunk of data
+     * @param chunk - The data chunk to process
+     * @param callback - Callback function for decoded events
+     */
+    write(chunk: ArrayBuffer, callback: EbmlDecoderCallback): void;
+    
+    /**
+     * Get schema information for a tag
+     * @param tagStr - Hex string representation of tag
+     */
+    getSchemaInfo(tagStr: string): SchemaInfo;
+    
+    private readTag(): boolean;
+    private readSize(): boolean;
+    private readContent(): boolean;
+  }
+  
+export default EbmlDecoder;

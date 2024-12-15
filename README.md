@@ -1,2 +1,5 @@
-# player
-an javascript player(ig)
+- [x] anime4k / webgpu
+- [] video states
+- [] sub rendering
+- [] audio track change
+- [] m3u8/hls/dash ?idk support
